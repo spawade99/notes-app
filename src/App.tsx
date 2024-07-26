@@ -1,8 +1,10 @@
+import { fakeData } from "./assets/fakeData"
+import NotesPage from "./pages/NotesPage"
 
 function App() {
   return (
-    <div>
-      <h1>Hello</h1>
+    <div id={"app"}>
+      <NotesPage notes={fakeData} />
     </div>
   )
 }
