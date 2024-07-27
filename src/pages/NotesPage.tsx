@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import NoteCard from '../components/NoteCard';
-import { note } from '../assets/fakeData';
-type NotesPageProps = {
-    notes: note[];
-};
-const NotesPage: React.FC<NotesPageProps> = ({ notes }) => {
+import { note } from '../types/types';
+import { db } from '../appwriter/database';
 
+const NotesPage = () => {
+    const [notes, setNotes] = useState<note[]>([]);
+    useEffect(() => {
+        init();
+    }, []);
+
+    async function init() {
+        const notes = await db.notes.list();
+        if (notes)
+            setNotes(notes.documents);
+    }
     return (
         <>
             {
-                notes.map((note, index) => (
+                notes.map((note) => (
                     <NoteCard key={note.$id} note={note} />
                 ))
             }
@@ -17,3 +25,4 @@ const NotesPage: React.FC<NotesPageProps> = ({ notes }) => {
     );
 }
 export default NotesPage;
+

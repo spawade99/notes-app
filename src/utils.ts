@@ -1,4 +1,4 @@
-import { position } from "./assets/fakeData";
+import { position } from "./types/types";
 
 export const SetNewOffset = (card: HTMLDivElement, mouseMoveDir: position) => {
     const offsetLeft = card.offsetLeft - mouseMoveDir.x;

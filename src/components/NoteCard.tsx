@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { note } from "../assets/fakeData";
+import { note } from "../types/types";
 import Trash from "../icons/Trash";
 import { SetNewOffset, autoGrow, setZIndex } from "../utils";
 
@@ -11,8 +11,8 @@ const NoteCard: React.FC<NoteCardProps> = ({ note }) => {
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
     // let position = JSON.parse(note.position);
-    const colors = JSON.parse(note.colors);
-    const body = JSON.parse(note.body);
+    const colors = note.color;
+    const body = note.body;
     let mouseStartPos = { x: 0, y: 0 };
     const cardRef = useRef<HTMLDivElement | null>(null);
     const [position, setPosition] = useState(note.position);
@@ -39,23 +39,16 @@ const NoteCard: React.FC<NoteCardProps> = ({ note }) => {
     };
     function mouseMove(e: MouseEvent) {
         if (e) {
-            //1 - Calculate move direction
             let mouseMoveDir = {
                 x: mouseStartPos.x - e.clientX,
                 y: mouseStartPos.y - e.clientY,
             };
 
-            //2 - Update start position for next move.
             mouseStartPos.x = e.clientX;
             mouseStartPos.y = e.clientY;
 
-            //3 - Update card top and left position.
             if (cardRef && cardRef.current) {
                 const newPosition = SetNewOffset(cardRef.current, mouseMoveDir);
-                // setPosition({
-                //     x: cardRef.current.offsetLeft - mouseMoveDir.x,
-                //     y: cardRef.current.offsetTop - mouseMoveDir.y,
-                // });
                 setPosition(newPosition);
             }
         }
