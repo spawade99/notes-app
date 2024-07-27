@@ -10,7 +10,7 @@ const NotesPage: React.FC<NotesPageProps> = ({ notes }) => {
         <>
             {
                 notes.map((note, index) => (
-                    <NoteCard key={index} note={note} />
+                    <NoteCard key={note.$id} note={note} />
                 ))
             }
         </>

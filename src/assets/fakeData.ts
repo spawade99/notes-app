@@ -2,8 +2,9 @@ export type note = {
     $id: number;
     body: string;
     colors: string;
-    position: string;
+    position: position;
 };
+export type position = { x: number; y: number };
 export type color = {
     id: number;
     colorHeader: string;
@@ -22,7 +23,7 @@ export const fakeData: note[] = [
             colorBody: "#FEE5FD",
             colorText: "#18181A",
         }),
-        position: JSON.stringify({ x: 505, y: 10 }),
+        position: { x: 505, y: 10 },
     },
     {
         $id: 2,
@@ -35,7 +36,7 @@ export const fakeData: note[] = [
             colorBody: "#A6DCE9",
             colorText: "#18181A",
         }),
-        position: JSON.stringify({ x: 305, y: 110 }),
+        position: { x: 305, y: 110 },
     },
     {
         $id: 3,
@@ -48,6 +49,6 @@ export const fakeData: note[] = [
             colorBody: "#FFF5DF",
             colorText: "#18181A",
         }),
-        position: JSON.stringify({ x: 605, y: 500 }),
+        position: { x: 605, y: 500 },
     },
 ];
