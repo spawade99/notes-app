@@ -73,6 +73,7 @@ const NoteCard: React.FC<NoteCardProps> = ({ note }) => {
                 onMouseDown={mouseDown}
             >
                 <Trash />
+                <span>First Note</span>
             </div>
             <div className="card-body">
                 <textarea
