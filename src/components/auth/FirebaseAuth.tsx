@@ -31,8 +31,7 @@ export const FirebaseAuth = () => {
             ],
         };
 
-        const ui =
-            firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(auth);
+        const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(auth);
         ui.disableAutoSignIn();
         ui.start("#firebaseui-auth-container", uiConfig);
     }, []);

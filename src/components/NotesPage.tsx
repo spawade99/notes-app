@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import NoteCard from '../components/NoteCard';
+import NoteCard from './NoteCard';
 import { Note } from '../types/types';
 import { useAuth } from '../contexts/authContext';
 import { auth } from 'firebaseui';
