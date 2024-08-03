@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import NoteCard from '../components/NoteCard';
 import { Note } from '../types/types';
+import { useAuth } from '../contexts/authContext';
+import { auth } from 'firebaseui';
 
 const NotesPage = () => {
     const [notes, setNotes] = useState<Note[]>([]);
+    const auth = useAuth();
     useEffect(() => {
         init();
     }, []);
@@ -16,9 +19,10 @@ const NotesPage = () => {
             setNotes(notes);
     }
     return (
-        <>
+        <><h1>Your signed in with user {auth?.currentUser?.email}</h1>
             {
                 notes.map((note) => (
+                    console.log(note),
                     <NoteCard key={note.$id} note={note} />
                 ))
             }

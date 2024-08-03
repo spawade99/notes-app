@@ -32,10 +32,13 @@ const NoteCard: React.FC<NoteCardProps> = ({ note }) => {
         document.addEventListener("mousemove", mouseMove);
         document.addEventListener("mouseup", mouseUp);
     }
+
     const mouseUp = () => {
         document.removeEventListener("mousemove", mouseMove);
         document.removeEventListener("mouseup", mouseUp);
+        saveData("position", JSON.stringify(position));
     };
+
     function mouseMove(e: MouseEvent) {
         if (e) {
             let mouseMoveDir = {
@@ -53,6 +56,15 @@ const NoteCard: React.FC<NoteCardProps> = ({ note }) => {
         }
     }
 
+    const saveData = async (key: string, value: string) => {
+        const payload = { "body": "This is a test note updated" };
+
+        try {
+            // await db.notes.update(note.$id, payload);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
         <div
