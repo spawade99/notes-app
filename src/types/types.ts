@@ -1,10 +1,10 @@
-export type note = {
+export type Note = {
     $id: number;
     body: string;
     color: color;
-    position: position;
+    position: Position;
 };
-export type position = { x: number; y: number };
+export type Position = { x: number; y: number };
 export type color = {
     id: string;
     colorHeader: string;

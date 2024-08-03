@@ -1,16 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
-import { note } from "../types/types";
+import { Note } from "../types/types";
 import Trash from "../icons/Trash";
 import { SetNewOffset, autoGrow, setZIndex } from "../utils";
 
 type NoteCardProps = {
-    note: note;
+    note: Note;
 };
 
 const NoteCard: React.FC<NoteCardProps> = ({ note }) => {
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
-    // let position = JSON.parse(note.position);
     const colors = note.color;
     const body = note.body;
     let mouseStartPos = { x: 0, y: 0 };

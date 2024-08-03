@@ -1,6 +1,6 @@
-import { position } from "./types/types";
+import { Position } from "./types/types";
 
-export const SetNewOffset = (card: HTMLDivElement, mouseMoveDir: position) => {
+export const SetNewOffset = (card: HTMLDivElement, mouseMoveDir: Position) => {
     const offsetLeft = card.offsetLeft - mouseMoveDir.x;
     const offsetTop = card.offsetTop - mouseMoveDir.y;
 

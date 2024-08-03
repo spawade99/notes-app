@@ -1,29 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import NoteCard from '../components/NoteCard';
-import { note } from '../types/types';
-import { db } from '../appwriter/database';
+import { Note } from '../types/types';
 
 const NotesPage = () => {
-    const [notes, setNotes] = useState<note[]>([]);
+    const [notes, setNotes] = useState<Note[]>([]);
     useEffect(() => {
         init();
     }, []);
 
     async function init() {
-        const notes = await db.notes.list();
+        const color = { id: "1", colorHeader: "lightgreen", colorBody: "lightgrey", colorText: "black" };
+        const position = { x: 100, y: 200 };
+        const notes: Note[] = [{ $id: 1, body: "Note 1", color: color, position: position }];
         if (notes)
-            setNotes(notes.documents);
+            setNotes(notes);
     }
     return (
         <>
-            <h1>This is CI test</h1>
-            <>
-                {
-                    notes.map((note) => (
-                        <NoteCard key={note.$id} note={note} />
-                    ))
-                }
-            </>
+            {
+                notes.map((note) => (
+                    <NoteCard key={note.$id} note={note} />
+                ))
+            }
         </>
     );
 }
