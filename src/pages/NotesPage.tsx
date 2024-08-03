@@ -16,11 +16,14 @@ const NotesPage = () => {
     }
     return (
         <>
-            {
-                notes.map((note) => (
-                    <NoteCard key={note.$id} note={note} />
-                ))
-            }
+            <h1>This is CI test</h1>
+            <>
+                {
+                    notes.map((note) => (
+                        <NoteCard key={note.$id} note={note} />
+                    ))
+                }
+            </>
         </>
     );
 }
