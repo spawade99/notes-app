@@ -5,33 +5,31 @@ import { FirebaseAuth } from "./components/auth/FirebaseAuth";
 import { Button } from "@/components/ui/button";
 
 import NotesPage from "./components/NotesPage";
-import { Mail } from "lucide-react";
+import { Circle, Image, LogOut, Mail, UserCircle, UserCircle2 } from "lucide-react";
 import "./app.scss"
-import { ModeToggle } from "./components/ThemeToggle";
+import { Profile } from "./components/Profile";
 import { LogIn } from "./components/auth/Login";
 
 function App() {
   const logoutHanlder = () => {
     logOut().finally(() => {
-      console.log("logged out");
       window.location.reload();
     });
   };
 
   return (
-    <div id={"app"}>
+    <div id={""}>
+      <Profile />
       {!auth?.currentUser && (
         <>
-          <div className="mt-4">
-            <ModeToggle />
-            <LogIn />
-          </div>
+          <LogIn />
         </>
       )}
+
       <AuthProvider>
-        <button type='button' onClick={logoutHanlder}>
-          LogOut
-        </button>
+        <div className="right-1">
+          <Button onClick={logoutHanlder}>   <LogOut />Log Out</Button>
+        </div>
         <NotesPage />
       </AuthProvider>
     </div>

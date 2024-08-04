@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import NoteCard from './NoteCard';
 import { Note } from '../types/types';
 import { useAuth } from '../contexts/authContext';
-import { auth } from 'firebaseui';
 
 const NotesPage = () => {
     const [notes, setNotes] = useState<Note[]>([]);

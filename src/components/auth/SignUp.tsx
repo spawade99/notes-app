@@ -27,6 +27,7 @@ export function SignUp() {
         password: "",
     });
     const [errors, setErrors] = useState<Partial<SignUpProps>>({});
+    const [responseError, setResponseError] = useState<string>("");
     const navigation = useNavigate();
 
     const handleUserChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,13 +45,17 @@ export function SignUp() {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         if (validate()) {
-            const response = await createNewUserWithEmailAndPassword(user.email, user.password);
-            console.log(response);
-            navigation("/notes");
-            // history.push("/login");
+            const response = createNewUserWithEmailAndPassword(user.email, user.password)
+                .then((response) => navigation("/notes"))
+                .catch((error) => {
+                    if (error.code === "auth/email-already-in-use")
+                        setResponseError("Email already in use, sign in instead!");
+                    else
+                        setResponseError("Something went wrong, Try again!")
+                });
         }
     };
 
@@ -122,6 +127,9 @@ export function SignUp() {
                     <Button type="submit" className="w-full" onClick={handleSubmit}>
                         Create an account
                     </Button>
+                    {responseError && (
+                        <span className="text-red-500 text-sm">{responseError}</span>
+                    )}
                     <Button variant="outline" className="w-full">
                         Sign up with GitHub
                     </Button>

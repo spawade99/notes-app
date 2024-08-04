@@ -27,7 +27,10 @@ export function AuthProvider({ children }: any) {
         return unsubscribe;
     }, []);
     const value: AuthContextType = { currentUser, isLoggedIn, loading };
-    return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>;
+    return (<AuthContext.Provider value={value}>
+        {!loading && children}
+    </AuthContext.Provider>
+    );
 }
 
 export function useAuth() {
